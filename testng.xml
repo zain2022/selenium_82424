@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="utilities.ExtentReportManager"></listener>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="C:/Users/zain.abideen_venture/Downloads/VD Automation/Selenium Practice/selenium_82424">
+        <classes>
+            <class name="TestCases.TestCases">
+                <methods>
+                    <include name="loginWithInvalidPassword"/>
+                    <include name="loginWithValidPassword"/>
+                    <include name="testAddLowestPricedItemsToCart"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
+
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">-->
+<!--<suite name="All Test Suite">-->
+<!--<listeners>-->
+<!--    <listener class-name="utilities.ExtentReportManager"></listener>-->
+<!--</listeners>-->
+<!--<test verbose="2" preserve-order="true" name="Selenium Tests">-->
+<!--    <parameter name="browser" value="chrome"/>-->
+<!--    <classes>-->
+<!--        <class name="TestCases.TestCases"/>-->
+<!--    </classes>-->
+<!--</test>-->
+<!--</suite>-->
