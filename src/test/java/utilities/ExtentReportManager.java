@@ -24,7 +24,7 @@ public class ExtentReportManager implements ITestListener { // Implementing Pred
     public void onStart(ITestContext testContext){
 
         // Deleting previously generated Extent Reports from reports directory
-        Arrays.stream(new File(".\\reports\\").listFiles()).forEach(File::delete);
+//        Arrays.stream(new File(".\\reports\\").listFiles()).forEach(File::delete);
 
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()); // Time Stamp
         repName = "Test-Report-"+timeStamp+".html";
@@ -51,7 +51,6 @@ public class ExtentReportManager implements ITestListener { // Implementing Pred
         test.createNode(result.getName());
         test.assignCategory(result.getMethod().getGroups());
         test.log(Status.PASS, "Test Passed");
-
     }
     public void onTestFailure(ITestResult result){
 

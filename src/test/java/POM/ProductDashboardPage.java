@@ -1,21 +1,21 @@
-// ProductDashboardPage.java
 package POM;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import utilities.CommonFunction;
 
 public class ProductDashboardPage {
     private WebDriver driver;
+    private CommonFunction commonFunctions;
 
     // Constructor
     public ProductDashboardPage(WebDriver driver) {
         this.driver = driver;
+        this.commonFunctions = new CommonFunction(driver); // Initialize common functions
     }
 
     // Locators
@@ -35,9 +35,7 @@ public class ProductDashboardPage {
 
     // Actions
     public void openFilterDropdownAndSelectPriceLowToHigh() {
-        WebElement dropdown = driver.findElement(filterDropdown);
-        Select select = new Select(dropdown);
-        select.selectByVisibleText("Price (low to high)");
+        commonFunctions.selectDropdownByVisibleText(filterDropdown, "Price (low to high)");
     }
 
     public List<Double> getItemPrices() {
@@ -64,16 +62,16 @@ public class ProductDashboardPage {
     }
 
     public void goToCartAndCheckout(String firstName, String lastName, String postalCode) {
-        driver.findElement(cartIcon).click();
-        driver.findElement(checkoutButton).click();
-        driver.findElement(firstNameField).sendKeys(firstName);
-        driver.findElement(lastNameField).sendKeys(lastName);
-        driver.findElement(postalCodeField).sendKeys(postalCode);
-        driver.findElement(continueButton).click();
+        commonFunctions.clickElement(cartIcon);
+        commonFunctions.clickElement(checkoutButton);
+        commonFunctions.sendKeysToField(firstNameField, firstName);
+        commonFunctions.sendKeysToField(lastNameField, lastName);
+        commonFunctions.sendKeysToField(postalCodeField, postalCode);
+        commonFunctions.clickElement(continueButton);
     }
 
     public int getCartQuantity() {
-        return driver.findElements(cartQuantity).size();
+        return commonFunctions.getElementListSize(cartQuantity);
     }
 
     public double getCartTotal() {
@@ -87,11 +85,11 @@ public class ProductDashboardPage {
     }
 
     public double getSubtotal() {
-        String subtotalText = driver.findElement(subtotal).getText().replace("Item total: $", "");
+        String subtotalText = commonFunctions.getElementText(subtotal).replace("Item total: $", "");
         return Double.parseDouble(subtotalText);
     }
 
     public void clickFinish(){
-        driver.findElement(finish).click();
+        commonFunctions.clickElement(finish);
     }
 }

@@ -2,16 +2,16 @@ package POM;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utilities.CommonFunction;
 
 public class LoginPage {
-
     WebDriver driver;
+    CommonFunction commonFunctions;
 
     // Constructor
     public LoginPage(WebDriver driver){
-
         this.driver = driver;
-
+        this.commonFunctions = new CommonFunction(driver); // Initialize common functions
     }
 
     // Locators
@@ -22,43 +22,28 @@ public class LoginPage {
     By btn_logout_locator = By.cssSelector("#logout_sidebar_link");
 
     public void setUserName(String name){
-
-        clearField(txt_username_locator);
-        driver.findElement(txt_username_locator).sendKeys(name);
-
+        commonFunctions.clearField(txt_username_locator);
+        commonFunctions.sendKeysToField(txt_username_locator, name);
     }
 
     public void setPassword(String password){
-
-        clearField(txt_password_locator);
-        driver.findElement(txt_password_locator).sendKeys(password);
-
-    }
-
-    public void clearField(By locator) {
-        driver.findElement(locator).clear();
+        commonFunctions.clearField(txt_password_locator);
+        commonFunctions.sendKeysToField(txt_password_locator, password);
     }
 
     public void clickLogin(){
-
-        driver.findElement(btn_login_locator).click();
-
+        commonFunctions.clickElement(btn_login_locator);
     }
 
     public void clickHamburgerMenu(){
-
-        driver.findElement(btn_hamburger_menu_locator).click();
-
+        commonFunctions.clickElement(btn_hamburger_menu_locator);
     }
 
     public void clickLogout(){
-
-        driver.findElement(btn_logout_locator).click();
-
+        commonFunctions.clickElement(btn_logout_locator);
     }
 
     public void assertErrorMessage(){
-
+        // Placeholder for error message assertion if needed
     }
-
 }
